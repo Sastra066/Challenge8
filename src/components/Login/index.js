@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
-import { GoogleLogin } from "@react-oauth/google";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import TextField from "@mui/material/TextField";
 import LoginStyle from "./login.module.css";
 
@@ -125,21 +125,26 @@ function Login() {
                 value={isLoading ? "Loading" : "Login"}
               />
               <p className={LoginStyle.p}>OR</p>
-              <GoogleLogin
+              <GoogleOAuthProvider
                 clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-                buttonText="Login With Google"
-                onSuccess={haldleSuccessGoogle}
-                onFailure={haldleFailureGoogle}
-                cookiePolicy={"single_host_origin"}
-              />
+              >
+                <GoogleLogin
+                  onSuccess={credentialResponse => {
+                    haldleSuccessGoogle(credentialResponse);
+                  }}
+                  onError={() => {
+                    haldleFailureGoogle('Login Failed');
+                  }}
+                />
+              </GoogleOAuthProvider>
+
               <div className="signup-wrapper text-center">
                 <Link to="/Register">
-                <a href="#register">
-                  Don&apos;t have an accout?
-                  <span className="text-primary"> Create One</span>
-                </a>
+                  <a href="#register">
+                    Don&apos;t have an accout?
+                    <span className="text-primary"> Create One</span>
+                  </a>
                 </Link>
-                
               </div>
             </form>
           ) : (
