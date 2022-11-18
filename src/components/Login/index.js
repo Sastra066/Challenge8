@@ -7,7 +7,7 @@ import LoginStyle from "./login.module.css";
 
 async function doLogin({ email, password }) {
   // Gunakan endpoint-mu sendiri
-  const response = await fetch("http://localhost:8000/api/v1/login", {
+  const response = await fetch("https://challenge6-production-cde3.up.railway.app/api/v1/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
