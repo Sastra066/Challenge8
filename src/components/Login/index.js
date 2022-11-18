@@ -23,7 +23,7 @@ async function doLogin({ email, password }) {
 
 async function doLoginWithGoogle(token) {
   // Sesuaikan endpoint
-  const response = await fetch("http://localhost:8000/api/v1/google", {
+  const response = await fetch("https://challenge6-production-cde3.up.railway.app//api/v1/google", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -68,9 +68,9 @@ function Login() {
 
   const haldleSuccessGoogle = (response) => {
     console.log(response);
-    console.log(response.tokenId);
-    if (response.tokenId) {
-      doLoginWithGoogle(response.tokenId)
+    console.log(response.credential);
+    if (response.credential) {
+      doLoginWithGoogle(response.credential)
         .then((token) => {
           localStorage.setItem("token", token);
           setIsLoggedIn(token);
