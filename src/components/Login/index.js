@@ -23,7 +23,7 @@ async function doLogin({ email, password }) {
 
 async function doLoginWithGoogle(token) {
   // Sesuaikan endpoint
-  const response = await fetch("https://challenge6-production-cde3.up.railway.app//api/v1/google", {
+  const response = await fetch("https://challenge6-production-cde3.up.railway.app/api/v1/google", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
