@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
-import { GoogleLogin } from "react-google-login";
+import { GoogleLogin } from "@react-oauth/google";
 import TextField from "@mui/material/TextField";
 import LoginStyle from "./login.module.css";
 
